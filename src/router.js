@@ -1,23 +1,64 @@
-import Vue from "vue";
-import Router from "vue-router";
+import Home from './components/Home.vue'
+import Menu from './components/Menu.vue'
+import About from './components/About.vue'
+import Contact from './components/Contact.vue'
+import Delivery from './components/Delivery.vue'
+import History from './components/History.vue'
+import OrderingGuide from './components/OrderingGuide.vue'
+import Admin from './components/Admin.vue'
 
-Vue.use(Router);
-
-export default new Router({
-	routes: [
-		// {
-		// 	path: "/",
-		// 	name: "home",
-		// 	component: Home
-		// },
-		// {
-		// 	path: "/about",
-		// 	name: "about",
-		// 	// route level code-splitting
-		// 	// this generates a separate chunk (about.[hash].js) for this route
-		// 	// which is lazy-loaded when the route is visited.
-		// 	component: () =>
-		// 		import( /* webpackChunkName: "about" */ "./views/About.vue")
-		// }
-	]
-});
+export const routes = [{
+		path: '/',
+		name: 'homeLink',
+		components: {
+			default: Home,
+			"ordering-guide": OrderingGuide,
+			"delivery": Delivery,
+			"history": History
+		}
+	},
+	{
+		path: '/menu',
+		name: 'menuLink',
+		component: Menu
+	},
+	{
+		path: '/admin',
+		name: 'adminLink',
+		component: Admin,
+		beforeEnter: (to, from, next) => {
+			alert('This area is for authorized users only, please login to continue.');
+			next();
+		}
+	},
+	{
+		path: '/about',
+		name: 'aboutLink',
+		component: About,
+		children: [{
+				path: '/contact',
+				name: 'contactLink',
+				component: Contact
+			},
+			{
+				path: '/history',
+				name: 'historyLink',
+				component: History
+			},
+			{
+				path: '/delivery',
+				name: 'deliveryLink',
+				component: Delivery
+			},
+			{
+				path: '/ordering-guide',
+				name: 'orderingGuideLink',
+				component: OrderingGuide
+			}
+		]
+	},
+	{
+		path: '*',
+		redirect: '/'
+	}
+]

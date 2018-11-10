@@ -2,9 +2,9 @@
 	<footer class="row">
 		<nav class="navbar navbar-toggleable-md navbar-light">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-				<li class="nav-item"><a href="/" class="nav-link">Menu</a></li>
-				<li class="nav-item"><a href="/" class="nav-link">Admin</a></li>
+				<router-link :to="{ name: 'homeLink' }" tag="li"><a class="nav-link">home</a></router-link>
+				<router-link :to="{ name: 'aboutLink' }" tag="li"><a class="nav-link">about</a></router-link>
+				<router-link :to="{ name: 'adminLink' }" tag="li"><a class="nav-link">admin</a></router-link>
 			</ul>
 		</nav>
 	</footer>

@@ -1,12 +1,39 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
+/* eslint-disable no-unused-vars */
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Accounting from 'accounting-js'
 
-Vue.config.productionTip = false;
+import {
+	routes
+} from './routes'
+import {
+	store
+} from './store/store.js'
+import App from './App.vue'
+
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+	routes,
+	mode: 'history',
+	scrollBehavior(to, from, savedPosition) {
+		if (to.hash) {
+			return {
+				selector: to.hash
+			}
+		}
+	}
+})
+
+Vue.filter('currency', function (val) {
+	return Accounting.formatMoney(val)
+})
+
+// Vue.component('global-component', () => import('./components/Menu.vue') )
 
 new Vue({
+	el: '#app',
 	router,
 	store,
-	render: h => h(App),
-}).$mount('#app');
+	render: h => h(App)
+})

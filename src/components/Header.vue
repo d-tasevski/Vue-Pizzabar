@@ -1,10 +1,10 @@
 <template>
 	<header class="row">
 		<nav class="navbar navbar-toggleable-md navbar-light">
-			<a href="/" class="navbar-brand">Pizza Planet</a>
+			<a class="navbar-brand" href="/">PIZZA PLANET PLUS</a>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-				<li class="nav-item"><a href="/" class="nav-link">Menu</a></li>
+				<router-link :to="{ name: 'homeLink' }" tag="li"><a class="nav-link">home</a></router-link>
+				<router-link :to="{ name: 'menuLink' }"><a class="nav-link">menu</a></router-link>
 			</ul>
 		</nav>
 	</header>
@@ -14,4 +14,12 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+header {
+	margin-bottom: 20px;
+}
+
+.navbar-brand {
+	font-size: 1.5em;
+}
+</style>
