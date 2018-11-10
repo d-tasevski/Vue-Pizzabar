@@ -5,7 +5,7 @@ import Accounting from 'accounting-js'
 
 import {
 	routes
-} from './routes'
+} from './router'
 import {
 	store
 } from './store/store.js'
